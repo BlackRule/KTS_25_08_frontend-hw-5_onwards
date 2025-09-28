@@ -1,0 +1,24 @@
+ @use "styles/common" as *;
+.icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & :global(.fill):global(.primary){
+    fill: $text-primary;
+  }
+  & :global(.fill):global(.secondary){
+    fill: $text-secondary;
+  }
+  & :global(.fill):global(.accent){
+    fill: $text-accent;
+  }
+  & :global(.stroke):global(.primary){
+    stroke: $text-primary;
+  }
+  & :global(.stroke):global(.secondary){
+    stroke: $text-secondary;
+  }
+  & :global(.stroke):global(.accent){
+    stroke: $text-accent;
+  }
+}

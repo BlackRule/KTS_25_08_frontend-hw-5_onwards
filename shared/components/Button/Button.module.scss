@@ -1,0 +1,64 @@
+ @use "styles/common" as *;
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-xxs;
+  font-size: 18px;
+  padding: $space-s $space-l;
+  border: 0;
+
+  &.disabled {
+    background: $button-primary-bg-disabled;
+    $c: $button-primary-text-disabled;
+    color: $c;
+
+    &, & svg {
+      fill: $c !important;
+    }
+  }
+  &:not(.disabled):not(.loading):hover {
+    cursor: pointer;
+  }
+
+}
+
+.buttonSkin_primary {
+  background: $button-primary-bg;
+  $c: $button-primary-text;
+  color: $c;
+
+  & svg {
+    fill: $c !important;
+  }
+
+  &:not(.disabled):not(.loading):hover {
+    background: $button-primary-bg-hover;
+    $c: $button-primary-text-hover;
+    color: $c;
+
+    &, & svg {
+      fill: $c !important;
+    }
+  }
+}
+
+.buttonSkin_secondary {
+  background: $button-secondary-bg;
+  $c: $button-secondary-text;
+  color: $c;
+
+  & svg {
+    fill: $c !important;
+  }
+  border: 1px solid $button-secondary-border-color;
+  &:not(.disabled):not(.loading):hover {
+    background: $button-secondary-bg-hover;
+    $c: $button-secondary-text-hover;
+    color: $c;
+
+    &, & svg {
+      fill: $c !important;
+    }
+  }
+}

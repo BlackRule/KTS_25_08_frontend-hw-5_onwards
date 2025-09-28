@@ -1,0 +1,30 @@
+ @use "styles/common" as *;
+.relatedItems {
+  margin-top: 50px;
+}
+
+.txt{
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 42px;
+  letter-spacing: 0.01em;
+  color: $text-primary;
+}
+.grid{
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  & a{
+    text-decoration: none;
+  }
+  @media (max-width: $bp-tablet) {
+    gap: 15px;
+  }
+
+}
+@media (min-width: $bp-tablet) {
+  .grid>:nth-child(4) {
+    display: none;
+  }
+}

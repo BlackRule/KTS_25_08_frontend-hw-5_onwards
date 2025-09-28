@@ -1,0 +1,58 @@
+ @use "styles/common" as *;
+.products{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  align-self: center;
+  text-align: center;
+}
+.pagePadding{
+  padding-top: 100px;
+}
+
+.p1{
+  align-self: center;
+  max-width: 640px;
+  text-align: center;
+  margin-bottom: 80px;
+  @media (max-width: $bp-tablet) {
+    font-size: 14px;
+  }
+}
+
+.filter{
+ align-self: flex-start;
+}
+.totalProducts{
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  margin: 50px 0;
+}
+.totalProducts__txt{
+  font-weight: 700;
+  font-size: 44px;
+  @media (max-width: $bp-tablet) {
+    font-size: 18px;
+  }
+}
+.totalProducts__count{
+  padding: 5px 16px;
+  color: $text-accent;
+  font-weight: 700;
+}
+.productsGrid{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 80px;
+  & a{
+    text-decoration: none;
+  }
+  @media (max-width: $bp-tablet) {
+    gap: 15px;
+  }
+}
+.product{
+  height: 100%;
+}
