@@ -15,21 +15,41 @@ type ProductProps = {
 const Product = ({ product }: ProductProps) => {
   const cartStore = useCartStore()
 
-  const images = product.images.length > 0 ? product.images : [null]
+  const hasImages = product.images.length > 0
 
   return (
     <section className={styles.product}>
-      <Carousel showArrows swipeable useKeyboardArrows emulateTouch>
-        {images.map((img, index) => (
-          <div key={img ?? index} className={styles.imageWrapper}>
-            {img ? (
+      {hasImages ? (
+        <Carousel
+          showArrows
+          swipeable
+          useKeyboardArrows
+          emulateTouch
+          showThumbs={product.images.length > 1}
+          renderThumbs={() =>
+            product.images.length > 1
+              ? product.images.map((img) => (
+                  <img
+                    key={img}
+                    src={img}
+                    alt={`${product.title} thumbnail`}
+                    loading="lazy"
+                  />
+                ))
+              : []
+          }
+        >
+          {product.images.map((img) => (
+            <div key={img} className={styles.imageWrapper}>
               <Image src={img} alt={product.title} width={560} height={560} />
-            ) : (
-              <div style={{ width: '100%', height: 560, backgroundColor: '#e0e0e0' }} />
-            )}
-          </div>
-        ))}
-      </Carousel>
+            </div>
+          ))}
+        </Carousel>
+      ) : (
+        <div className={styles.imageWrapper}>
+          <div className={styles.placeholder} role="img" aria-label="Product image not available" />
+        </div>
+      )}
       <div className={styles.details}>
         <Text view="title" className={styles.title} tag="h2">
           {product.title}
