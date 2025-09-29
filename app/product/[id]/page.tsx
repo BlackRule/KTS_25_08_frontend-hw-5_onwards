@@ -10,9 +10,14 @@ type PageParams = {
   id: string
 }
 
-export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
+type PageProps = {
+  params: Promise<PageParams>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params
   try {
-    const product = await fetchProduct(params.id, { next: { revalidate } })
+    const product = await fetchProduct(id, { next: { revalidate } })
     return {
       title: product.title,
       description: product.description,
@@ -29,8 +34,9 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
   }
 }
 
-export default async function ProductPage({ params }: { params: PageParams }) {
-  const product = await fetchProduct(params.id, { next: { revalidate } }).catch(() => null)
+export default async function ProductPage({ params }: PageProps) {
+  const { id } = await params
+  const product = await fetchProduct(id, { next: { revalidate } }).catch(() => null)
   if (!product) {
     notFound()
   }
