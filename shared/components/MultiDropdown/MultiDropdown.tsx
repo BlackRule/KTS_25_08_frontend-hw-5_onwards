@@ -1,15 +1,17 @@
 "use client"
 
 import cn from 'classnames'
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, RefObject, useEffect, useRef, useState } from 'react'
 import Loader from '@/shared/components/Loader'
 import Input from '@/shared/components/Input'
 import ArrowDownIcon from '@/shared/components/icons/ArrowDownIcon'
 import styles from './MultiDropdown.module.scss'
 
-const useClickOutside = <T extends HTMLElement>(ref: RefObject<T>, onClickOutside: () => void) => {
+type PossibleRef<T extends HTMLElement> = RefObject<T | null> | MutableRefObject<T | null>
+
+const useClickOutside = <T extends HTMLElement>(ref: PossibleRef<T>, onClickOutside: () => void) => {
   useEffect(() => {
-    const element = ref?.current
+    const element = ref.current
 
     function handleClickOutside(event: Event) {
       if (element && !element.contains(event.target as Node | null)) {
@@ -62,8 +64,8 @@ export const MultiDropdown = ({
     return opts.some((o) => opt.key === o.key)
   }
 
-  const ref = useRef<HTMLDivElement>(null)
-  useClickOutside(ref, () => setIsOpen(false))
+  const ref = useRef<HTMLDivElement | null>(null)
+  useClickOutside<HTMLDivElement>(ref, () => setIsOpen(false))
   useEffect( () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     disabled && setIsOpen(false)
