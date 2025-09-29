@@ -1,7 +1,7 @@
 'use client'
 
 import cn from 'classnames'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import Button from '@/shared/components/Button'
 import Input from '@/shared/components/Input'
@@ -18,11 +18,6 @@ const SearchBar = ({ className }: SearchBarProps) => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const { width } = useWindowSize()
-  const [isWide, setIsWide] = useState(false)
-
-  useEffect(() => {
-    setIsWide(width > 1023)
-  }, [width])
 
   const currentQuery = searchParams.get(QUERY_PARAMS.query) ?? ''
   const [value, setValue] = useState('')
@@ -57,7 +52,7 @@ const SearchBar = ({ className }: SearchBarProps) => {
         }}
       />
       <Button onClick={() => applySearch(value)}>
-        {isWide ? 'Find Now' : '🔍'}
+        {width > 1023 ? 'Find Now' : '🔍'}
       </Button>
     </div>
   )

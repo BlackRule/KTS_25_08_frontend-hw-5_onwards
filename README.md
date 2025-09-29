@@ -27,4 +27,3 @@ pnpm lint             # run ESLint checks
 The project is configured for Vercel deployment out of the box. Run `pnpm build && pnpm start` locally to validate the production bundle before deploying.
 🔍  Inspect: https://vercel.com/blackrules-projects/next/FMmcf5ktawF43jmAKipSj9qqduXL [6s]
 ✅  Preview: https://next-2hee9knej-blackrules-projects.vercel.app
-Old (vite) version: https://github.com/BlackRule/KTS_25_08_frontend-hw-2_onwards

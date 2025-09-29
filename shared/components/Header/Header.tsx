@@ -18,8 +18,6 @@ const Header = observer(() => {
   const { user } = useAuthStore()
   const pathname = usePathname()
 
-  const accountHref = user ? '/user' : '/login'
-
   return (
     <header className={styles.header}>
       <div className={styles.header__inner}>
@@ -46,7 +44,7 @@ const Header = observer(() => {
         </nav>
         <div className={styles.right}>
           <Link href="/cart" className={styles.bag} aria-label="Cart" />
-          <Link href={accountHref} className={styles.user} aria-label="Account" prefetch={false} data-account-href={accountHref} />
+          <Link href={user ? '/user' : '/login'} className={styles.user} aria-label="Account" />
         </div>
       </div>
     </header>
