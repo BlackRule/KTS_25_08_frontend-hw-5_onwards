@@ -34,6 +34,7 @@ const Product = ({ product }: ProductProps) => {
                     src={img}
                     alt={`${product.title} thumbnail`}
                     loading="lazy"
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 ))
               : []
@@ -41,7 +42,13 @@ const Product = ({ product }: ProductProps) => {
         >
           {product.images.map((img) => (
             <div key={img} className={styles.imageWrapper}>
-              <Image src={img} alt={product.title} width={560} height={560} />
+              <Image
+                src={img}
+                alt={product.title}
+                width={560}
+                height={560}
+                style={{ width: '100%', height: 'auto' }}
+              />
             </div>
           ))}
         </Carousel>
