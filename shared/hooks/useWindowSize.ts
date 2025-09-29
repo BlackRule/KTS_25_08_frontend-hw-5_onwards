@@ -16,19 +16,27 @@ const getWindowDimensions = (): Size => {
 }
 
 const useWindowSize = (delay = 100) => {
-  const [windowDimensions, setWindowDimensions] = useState<Size>(() => getWindowDimensions())
+  const [windowDimensions, setWindowDimensions] = useState<Size>({ width: 0, height: 0 })
 
   useEffect(() => {
     if (typeof window === 'undefined') {
       return
     }
 
-    function handleResize() {
+    const handleResize = () => {
       setWindowDimensions(getWindowDimensions())
     }
+
+    handleResize()
+
     const debouncedHandleResize = debounce(handleResize, delay)
     window.addEventListener('resize', debouncedHandleResize)
-    return () => window.removeEventListener('resize', debouncedHandleResize)
+    return () => {
+      window.removeEventListener('resize', debouncedHandleResize)
+      if (typeof debouncedHandleResize.cancel === 'function') {
+        debouncedHandleResize.cancel()
+      }
+    }
   }, [delay])
 
   return windowDimensions
