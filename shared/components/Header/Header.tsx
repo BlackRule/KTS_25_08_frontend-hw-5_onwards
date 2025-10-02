@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -17,6 +18,11 @@ const navLinks = [
 const Header = observer(() => {
   const { user } = useAuthStore()
   const pathname = usePathname()
+  const [accountHref, setAccountHref] = useState('/login')
+
+  useEffect(() => {
+    setAccountHref(user ? '/user' : '/login')
+  }, [user])
 
   return (
     <header className={styles.header}>
@@ -24,7 +30,7 @@ const Header = observer(() => {
         <input type="checkbox" id={styles.menu__checkbox} />
         <div className={styles.logoAndBurger}>
           <Link href="/" className={styles.logo}>
-            <Image src={logo} alt="Lalasia logo" width={32} height={32} priority />
+            <Image src={logo} alt="Lalasia logo" width={32} height={32} />
             <span>Lalasia</span>
           </Link>
           <label htmlFor={styles.menu__checkbox} className={styles.burger}>
@@ -44,7 +50,7 @@ const Header = observer(() => {
         </nav>
         <div className={styles.right}>
           <Link href="/cart" className={styles.bag} aria-label="Cart" />
-          <Link href={user ? '/user' : '/login'} className={styles.user} aria-label="Account" />
+          <Link href={accountHref} className={styles.user} aria-label="Account" />
         </div>
       </div>
     </header>
