@@ -1,0 +1,23 @@
+@use "styles/common" as *;
+.input{
+  height: 52px;
+  display: flex;
+  padding: $space-s $space-xs;
+  border: 1px solid transparent;
+  background-color: $input-bg;
+  color: $input-text;
+  &:has(input:focus){
+    outline:1px solid $input-border-focus;
+  }
+  &>input{
+    outline: none;
+    -webkit-text-fill-color: $input-text; /*TODO dark mode*/
+    flex-grow: 1;
+    border: 0;
+    font-size: 1rem;
+    background-color: $input-bg;
+    &:disabled{
+      color: $input-text-disabled;
+    }
+  }
+}

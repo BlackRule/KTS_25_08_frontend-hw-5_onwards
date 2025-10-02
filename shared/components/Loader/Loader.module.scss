@@ -1,0 +1,18 @@
+ @use "styles/common" as *;
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & svg{
+    fill:$loader-bg
+  }
+  @keyframes rotate {
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
+  animation: rotate 1s linear infinite;
+}
