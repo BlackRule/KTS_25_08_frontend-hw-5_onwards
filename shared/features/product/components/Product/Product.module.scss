@@ -6,6 +6,10 @@
     flex-wrap: wrap;
   }
   gap: 50px;
+  // IDK why but this is needed to properly size the carousel
+  & :global(.carousel-root) {
+    flex: 1;
+  }
 }
 
 .imageWrapper {
